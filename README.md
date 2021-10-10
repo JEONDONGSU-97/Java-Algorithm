@@ -1,4 +1,4 @@
-# Java-Algorithm
+# 2021.10.9
 
 ```
     static int med3_1 (int a, int b, int c) {
