@@ -35,3 +35,37 @@ else if에서도 또 수행하기 때문이다.
 # 2021.10.10
 
 Q10, Q11, Q12, Q13 코드 최적화 시키기 반복되는 문장 최소화, 반복문과 조건문 최적화.
+
+# 2021.10.11
+Q5.  b[j--] => b[b.length-i-1]; 이렇게 하면 j라는 변수를 굳이 생성할 필요가 없다.
+
+```
+	static void rcopy(int[] a, int[] b) {
+		int num = a.length>=b.length ? b.length	: a.length;
+		int j = num-1;
+		for(int i=0; i<num; i++) {
+			a[i] = b[j--];
+		}
+	}
+```
+
+Q6.  for(int i=0; i<digits/2; i++)에서 digits 대신 d.length이걸로 찾으려 했는데
+	  문제를 제대로 보니까 char[]였다. 보려고 하는 것만 보면 안되는 거같다. 좀 더 침착해지고 차분하게 해야겠다!
+
+```
+	static int cardConv(int x, int r, char[] d) {
+		int digits = 0;
+		String dchar = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";	
+		do {
+			d[digits++] = dchar.charAt(x % r); // r로 나눈 나머지 저장
+			x /= r; // r로 나눈 몫을 x에 다시 대입 => x = x/r 예) x = 26/2
+		} while (x != 0);
+		
+		for(int i=0; i<digits/2; i++) {
+			char t= d[i];
+			d[i] = d[digits-i-1];
+			d[digits-i-1] = t;
+		}
+		return digits;
+	}
+```
