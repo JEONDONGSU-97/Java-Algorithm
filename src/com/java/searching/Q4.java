@@ -26,7 +26,7 @@ public class Q4 {
 			int pc = (pl + pr)/2; // 중앙요소
 			System.out.print("   |");
 			if(pl != pc) 
-				// %(pl*4)+1s<-%(pc-pl)*4s+ => 맨처음시작시 %2s<-%11s+ => ""가 1자릿수
+				// %(pl*4)+2s<-%(pc-pl)*4-1s+ => 맨처음시작시 %2s<-%11s+ => ""가 1자릿수
 				System.out.printf(String.format("%%%ds<-%%%ds+", (pl*4)+2, (pc-pl)*4-1), "", "");
 			else
 				System.out.printf(String.format("%%%ds<-+", pc*4+1), "");
