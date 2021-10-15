@@ -103,3 +103,43 @@ System.out.printf(String.format("%%%ds<-%%%ds+", (pl*4)+2, (pc-pl)*4-1), "", "")
 * (n=7이라고 가정 pr = 6) ```%(pl*4)+2s<-%(pc-pl)*4-1s+```
 * 맨처음시작시 ```%2s<-%11s+```
 * ""가 2자릿수 차지한 후 ->출력 그다음 ""가 11자릿수 차지한 후 +출력 
+
+# 2021.10.15
+
+* 수정 전
+```
+for(int a=0; a<n; a++) {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			for(int i=1; i<=19; i++) {				
+				if(arr[x][i] == 0) {	// 0일때 1로 뒤집기 
+					arr[x][i] = 1;
+				} else if(arr[x][i] == 1) {	    // 1일때 0으로 뒤집기
+					arr[x][i] = 0;
+				}
+			}
+			for(int j=1; j<=19; j++) {
+				if(arr[j][y] == 0) {	// 0일때 1로 뒤집기
+					arr[j][y] = 1;
+				} else if(arr[j][y] == 1) {		// 1일때 0으로 뒤집기
+					arr[j][y] = 0;
+				}
+			}
+		}
+```
+* 수정 후 (여기서는 1을 먼저 0으로 뒤집는 작업을 해줘야 되기 때문에 ```if(arr[x][i] == 0)```로 시작하는 것보다 ```if(arr[x][i] == 1)```로 시작하는게 맞다.)
+* 그래서 else if도 쓸 필요가 없다.
+```
+for(int a=0; a<n; a++) {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			for(int i=1; i<=19; i++) {				
+				if(arr[x][i] == 1) arr[x][i] = 0; // 1일때 0으로 뒤집기
+				else arr[x][i] = 1; // 0이면 1로 뒤집기
+			}
+			for(int j=1; j<=19; j++) {
+				if(arr[j][y] == 1) arr[j][y] = 0; // 1일때 0으로 뒤집기
+				else arr[j][y] = 1; // 0이면 1로 뒤집기
+			}
+		}
+```
